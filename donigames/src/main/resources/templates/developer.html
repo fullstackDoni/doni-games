@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="mainContent">
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{'/adddeveloper'}" method="post">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <label th:text="#{label.name}"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success" th:text="#{button.add}"></button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th th:text="#{label.name}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="developers : ${developer}">
+                    <td th:text="${developers.id}"></td>
+                    <td th:text="${developers.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

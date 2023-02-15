@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="mainContent">
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{'/addgame'}" method="post">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <label th:text="#{label.name}"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <label th:text="#{label.years}"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="number" class="form-control" name="god">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <label th:text="#{label.developer}"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <select name="developer_id">
+                            <option th:each="developer : ${developers}" th:text="${developer.name}" th:value="${developer.id}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success" th:text="#{button.add}"></button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th th:text="#{label.name}"></th>
+                    <th th:text="#{label.years}"></th>
+                    <th th:text="#{label.developer}"></th>
+                    <th width="10%" th:text="#{label.details}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="game : ${games}">
+                    <td th:text="${game.id}"></td>
+                    <td th:text="${game.name}"></td>
+                    <td th:text="${game.god}"></td>
+                    <td th:text="${game.developers.name}"></td>
+                    <td>
+                        <a th:href="@{'/details/'+ ${game.id}}" class="btn btn-primary btn-sm" style="background-color: darkblue" th:text="#{label.details}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

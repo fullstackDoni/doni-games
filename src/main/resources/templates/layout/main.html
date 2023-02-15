@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>DONI SECURITY</title>
+    <link rel="stylesheet" type="text/css" th:href="@{'/css/bootstrap.css'}">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#15133C">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{'/'}">DONI BY REPACK.GAMES</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-link">
+                            <a class="nav-link" th:href="@{'/'}" th:text="#{label.home}"></a>
+                        </li>
+                        <li class="nav-link">
+                            <a class="nav-link" href="?lng=ru">Русский</a>
+                        </li>
+                        <li class="nav-link">
+                            <a class="nav-link" href="?lng=en">English</a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{'/login'}" th:text="#{label.login}"></a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{'/moderatorpanel'}" th:text="#{label.console.moderator}"></a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{'/adminpanel'}" th:text="#{label.console.admin}"></a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAnonymous()">
+                            <a class="nav-link" th:href="@{'/developer'}" th:text="#{label.add.developer}"></a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAnonymous()">
+                        <a class="nav-link" th:href="@{'/profile'}" th:text="#{label.console.profile}"></a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAnonymous()">
+                        <a class="nav-link" href="JavaScript:void(0)" onclick="document.getElementById('logoutForm').submit()" th:text="#{label.logout}">Logout</a>
+                        </li>
+                        <li class="nav-link" sec:authorize="isAuthenticated()">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span th:text="${currentUser.fullName}"></span>
+                            </a>
+                            <form th:action="@{'/signout'}" method="post" id="logoutForm">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container mt-3">
+     <div class="row">
+         <div class="col-12" layout:fragment="mainContent">
+         </div>
+     </div>
+    </div>
+    <div class="container-fluid dg-dark py-3">
+        <div class="row mt-3">
+            <div class="col-12">
+                <h5 class="text-center light">Repack by Doни &copy; 2022</h5>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" th:src="@{'/js/boostrap.bundle.js'}"></script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="mainContent">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <form th:action="@{'/signin'}" method="post">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label th:text="#{label.login.email}"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="email" class="form-control" name="user_email">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label th:text="#{label.login.password}"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="password" class="form-control" name="user_password">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success" th:text="#{button.login}"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

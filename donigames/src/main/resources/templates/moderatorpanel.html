@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+             xmlns:th="http://www.thymeleaf.org"
+             xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="mainContent">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th th:text="#{label.name}"></th>
+                    <th th:text="#{label.years}"></th>
+                    <th th:text="#{label.developer}"></th>
+                    <th width="10%" th:text="#{label.details}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="game : ${games}">
+                    <td th:text="${game.id}"></td>
+                    <td th:text="${game.name}"></td>
+                    <td th:text="${game.god}"></td>
+                    <td th:text="${game.developers.name}"></td>
+                    <td>
+                        <a th:href="@{'/details/'+ ${game.id}}" class="btn btn-primary btn-sm" style="background-color: darkblue" th:text="#{label.details}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>
